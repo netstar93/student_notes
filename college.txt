@@ -1,0 +1,55 @@
+Entities -  Organisation , students , faculty , admin , management 
+
+Roles & their Fuctionalities
+	students		
+			Signup using FB/Email , SIGN In 
+			Add social links (Optional)
+			Review a college
+			Add/read notes , suggest Notes
+			Request a friend from same/other college
+			Watch/download youtube videos (only a specifc type)
+			Add Request/Suggestion to Organisation Anonymously
+			FB etc....
+	
+	Faculty
+			Signup using FB/Email , Sign In
+			Manage own Notes, Broadcast messages to students(Whatsapp ,FB)
+			Watch/download youtube videos (only a specifc type)
+			Monitor Students Activities
+			PM a student
+			
+	Admin
+			Manage All (except students requests/feedback)
+			Broadcast a global message
+			Approve Notes
+			
+	Organisation
+			Add/schedule some seminar/meeting
+			Broadcast global message
+			Monitor Faculty activities
+			PM a student/faculty
+
+			
+PORTAL View
+
+Homepage - FrontEnd
+	Header - College Logo , Menus , Login,Logout
+			
+	Content - 	
+		A random static Motivational Image
+		Show Some Latest Career news/Advice,  Videos
+		Most Active Student
+	Footer
+		Some random Quotes and links e.g. copyright text    
+	
+Sign up/Sign In Page
+Notes Listing Page Subject Wise Class Wise
+Notes Read Page
+Youtube Search/Download Page
+Feature Request Page 
+	
+			
+			
+			
+			
+	
