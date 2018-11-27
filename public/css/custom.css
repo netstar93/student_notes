@@ -1,0 +1,51 @@
+.main-container{
+    margin : 0px 5px 20px 20px;
+    border-top: 1px solid;
+}
+.page  .page-title{
+    font-size:  28px;
+}
+.page .video {
+    width: 50%;
+    position: relative;
+    left: 25%;
+}
+.left-content{
+    width : 20vw;
+    float:left;
+    border-right: 1px solid #ffff;
+    padding: 5px 10px 10px 2px;
+    min-height: 90vh;
+}
+.left-content a {
+    cursor: pointer;
+    color: unset;
+    text-decoration: none;
+}
+.left-content a :hover {
+    color : #ffff;
+}
+.right-content{
+    width : 70vw;
+    float:right;
+}
+.left-content ul.sources {
+    list-style: none;
+}
+ul.sources  li{
+    padding:5px;
+    padding:5px;
+}
+.search-result{
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+}
+.content  .video-item{
+    display: inline-block;
+    max-width: 250px;
+    padding: 5px;
+}
+div, span {
+    color:#f0f0f0 !important;
+}

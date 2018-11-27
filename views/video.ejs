@@ -1,0 +1,43 @@
+<% layout('layout') -%>
+<div class="page youtube ">
+    <div class="top text-center">
+        <div class="video">
+        <div class="page-title text-center">Watch & Download Youtube</div>
+            <form class="down-form" name="youtube-download" method="get" action="/video">
+                <label for="search">Search Youtube Videos</label>
+                <input type="text" placeholder="Type video name" value="<%=query %>" class="form-control" name="query"/>
+                <button class="btn btn-default btn-sm action-button">Search</button>
+            </form>
+
+    </div>
+    </div>
+    <div class="content search-result">
+        <div class="list">
+            <% if(videos)  { %>
+                <% videos['items'].forEach(function(video) { %>
+                    <div class="video-item text-center">
+                        <div class="thumbnail">
+                            <a href="https://www.youtube.com/watch?v=<%= video['id']['videoId'] %>">
+                                <img src= <%= video['snippet']['thumbnails']['medium']['url'] %> width="230px">
+                            </a>
+                        </div>
+                        <div class="title ">
+                            <%= video['snippet']['title']%>
+                        </div>
+                        <div class="download">
+                            <a href="javascript:void(0)"> <button videoid="<%=video['id']['videoId']%>" quality = "higher"  class ="download btn btn-default btn-lg action-button btn-xs">Generate Link</button> </a>
+                            <a href="#"> <button class="btn btn-default btn-lg action-button btn-xs hide">Download</button></a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+</div>
+<script>
+    var download = function(){
+        var quality = this.attr("quality");
+        var video_id = this.attr("videoid");
+        console.log(this.quality);
+    }
+</script>

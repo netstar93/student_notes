@@ -1,0 +1,9 @@
+<% layout('layout') -%>
+<div class ="new-list">
+   <div class="basic-info">Total <%= newsData . totalResults %> founds .</div>
+    <% JSON.parse(newsData . articles) . foreach(function( err, news ) { %>
+    <div class="item">
+<%= news  %>
+    </div>
+    <%  }) %>
+</div>
