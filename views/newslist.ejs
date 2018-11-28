@@ -1,9 +1,25 @@
 <% layout('layout') -%>
-<div class ="new-list">
-   <div class="basic-info">Total <%= newsData . totalResults %> founds .</div>
-    <% JSON.parse(newsData . articles) . foreach(function( err, news ) { %>
-    <div class="item">
-<%= news  %>
+<div class="side-nav left-content">
+    <div class="content">
+        <h2>Sources</h2>
+        <ul class="sources">
+            <li><a href="/reader?source=google-news">Google News</a></li>
+            <li>Coolztricks</li>
+            <li>Earticleblog</li>
+        </ul>
     </div>
-    <%  }) %>
+</div>
+<div class ="right-content new-list">
+   <div class="basic-info">Total <%= newsData . totalResults %> Latest Headlines </div>
+
+   <% newsData['articles'].forEach(function(news) {  %>
+   <div class="content-wrapper">
+    <div class="news">   
+        <div class="title"><%= news.title %></div>
+        <div class="desc"><%= news.description %></div>
+    </div>
+    <div class="img"><img src="<%= news.urlToImage %>" style = "max-width:150px " /></div>
+   </div>
+
+   <% }) %>   
 </div>

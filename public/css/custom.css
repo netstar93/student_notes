@@ -5,17 +5,40 @@
 .page  .page-title{
     font-size:  28px;
 }
+.basic-info {
+    font-size: 24px;
+    /* background-color: lightseagreen; */
+    padding: 8px;
+}
+.content-wrapper{
+    box-shadow : 0px 0px 20px 0px darkseagreen;
+    padding-left: 15px;
+}
+.content-wrapper .news{
+    width: 70%;
+    float: left;
+}
+.content-wrapper .img{
+    width: 30%;
+    /* float: right; */
+}
 .page .video {
     width: 50%;
     position: relative;
     left: 25%;
 }
 .left-content{
-    width : 20vw;
+    width : 20%;
     float:left;
     border-right: 1px solid #ffff;
     padding: 5px 10px 10px 2px;
-    min-height: 90vh;
+    min-height: 100vh;
+}
+.side-nav{
+    margin-right: 10px;
+}
+.news-list{
+    padding: 20px 10px 20px 20px;    
 }
 .left-content a {
     cursor: pointer;
@@ -26,8 +49,8 @@
     color : #ffff;
 }
 .right-content{
-    width : 70vw;
-    float:right;
+ width: 70%;
+ float: left;
 }
 .left-content ul.sources {
     list-style: none;
