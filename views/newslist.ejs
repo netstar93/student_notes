@@ -1,25 +1,42 @@
 <% layout('layout') -%>
 <div class="side-nav left-content">
     <div class="content">
-        <h2>Sources</h2>
+        <h2>News Feed</h2>
         <ul class="sources">
             <li><a href="/reader?source=google-news">Google News</a></li>
-            <li>Coolztricks</li>
-            <li>Earticleblog</li>
+            <li><a href="/reader?source=coolztricks">Coolztricks</a></li>
+            <li><a href="/reader?source=earticleblog">Earticleblog</a></li>
         </ul>
     </div>
 </div>
 <div class ="right-content new-list">
-   <div class="basic-info">Total <%= newsData . totalResults %> Latest Headlines </div>
-
+   <div class="basic-info">Latest Headlines - <%= source %></div>
+<% if(source == 'googlec-news') { %>
    <% newsData['articles'].forEach(function(news) {  %>
    <div class="content-wrapper">
     <div class="news">   
         <div class="title"><%= news.title %></div>
         <div class="desc"><%= news.description %></div>
     </div>
-    <div class="img"><img src="<%= news.urlToImage %>" style = "max-width:150px " /></div>
+    <div class="img"><img src="<%= news.thumbnail %>" style = "max-width:150px " /></div>
    </div>
+   <% }) %>
+   <% } %>
 
-   <% }) %>   
+    <% if(true) { %>
+           <% newsData.items.forEach(function(item) { %>
+        <div class="content-wrapper clearfix">
+               <div class="news">
+                    <div class="title"><%=item.title  %></div>
+                    <div class="desc">
+                        <%- item.content  %>
+                        <span><%= item.pubDate %></span>
+                    </div>
+               </div>
+            <% if( typeof item.thumbnail != "undefined") {%>
+               <div class="img"><img src="<%= item.thumbnail %>" width="150px" style = "max-width:150px " /></div>
+            <% } %>
+        </div>
+          <% }) %>
+    <% }  %>
 </div>

@@ -27,4 +27,8 @@ server.listen(app.get('port') , function(){
     console.log('Running on port ' +app.get('port'));
 })
 
+global.debug = function(data) {
+    console.log(data);
+}
+
 module.exports = app;
