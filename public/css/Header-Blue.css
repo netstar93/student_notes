@@ -1,8 +1,8 @@
 .header-blue{
-  /*background: linear-gradient(148deg, #172A23, #21A9A7);*/
-  background-color: darkslategray;
+  background: linear-gradient(424deg, #172C3E, #21AAE1);
+  /* background-color: darkslategray; */
   padding-bottom:120px;
-  font-family:'Source Sans Pro', sans-serif;
+  font-family: sans-serif;
 }
 
 @media (max-width:767px) {
@@ -124,7 +124,7 @@
 .header-blue .navbar .dropdown-menu > li > a:focus, .header-blue .navbar .dropdown-menu > li > a{
   line-height:2;
   font-size:14px;
-  color:#37434d;
+  color : #37434d !important;
 }
 
 .header-blue .navbar .dropdown-menu > li > a:focus, .header-blue .navbar .dropdown-menu > li > a:hover{

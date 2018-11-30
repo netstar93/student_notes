@@ -31,6 +31,22 @@ router.post('/video' , function(req,res) {
     });
 });
 
+router.get('/video' , function(req,res , next) {
+    search_query = '';
+    if(req.query.query) {
+        search_query  =  req.query.query;
+    }
+    console.log(search_query);
+    var search_url = "https://www.googleapis.com/youtube/v3/search?q="+search_query+"&type=video&key=AIzaSyCEpzNH0RT14Y8h_CRcSq6ncUNnq8Ktiws&part=snippet&maxResults=20";
+    request.get(search_url , function(err, response, body){
+        if(err) return console.dir(err);
+        var videos = JSON.parse(body);
+        // videos['items']. forEach(function(video) {
+                res.render('video', {title: "Watch download Video",query : search_query,  videos : videos });
+            // })
+        });
+});
+
 router.get('/api/download', function (req, res) {
     var file = req.query.id+'.mp4';
     res.download(file, function (err) {
@@ -67,19 +83,6 @@ router.get('/api/generate_video', function (req, res) {
             });
         });
     }
-});
-
-router.get('/video' , function(req,res , next) {
-    var search_query  =  req.query.query;
-    console.log(search_query);
-    var search_url = "https://www.googleapis.com/youtube/v3/search?q="+search_query+"&type=video&key=AIzaSyCEpzNH0RT14Y8h_CRcSq6ncUNnq8Ktiws&part=snippet&maxResults=20";
-    request.get(search_url , function(err, response, body){
-        if(err) return console.dir(err);
-        var videos = JSON.parse(body);
-        // videos['items']. forEach(function(video) {
-                res.render('video', {title: "Watch download Video",query : search_query,  videos : videos });
-            // })
-        });
 });
 
 router.get('/register' , function(req,res) {

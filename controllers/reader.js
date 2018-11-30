@@ -6,10 +6,12 @@ var apiHelper = require('../helpers/news-api');
 var fs = require('fs');
 var Parser = require('rss-parser');
 let parser = new Parser(); 
-// var top_headlines = "https://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=0289bc2596de42329baf44ae460f1bc4";
+const GoogleNewsRss = require('google-news-rss');
+const googleNews = new GoogleNewsRss();
 var top_headlines = "https://news.google.com/_/rss?hl=en-IN&gl=IN&ceid=IN:en";
 var coolztricks = "https://www.coolztricks.com/rss";
-var earticleblog = "https://www.earticleblog.com/feed";
+var earticleblog = "https://www.earticleblog.com/feed"; 
+var desidime = "https://www.desidime.com/deals.atom";
 
 router.get('/' , function(req,response){
         var feed_url = getFeedUrl(req.query.source);
@@ -34,6 +36,8 @@ function getFeedUrl(source_name) {
             return top_headlines;
         case 'earticleblog' :
             return earticleblog;
+            case 'desidime' :
+            return desidime;
     }
     return top_headlines;
 }

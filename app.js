@@ -14,10 +14,10 @@ app.use(express.static(public));
 app.set('port', process.env.PORT || 8000);
 app.use( bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-var routes = require('./controllers/routes.js');
-var notes = require('./controllers/notes.js');
-app.use('/', routes);
-app.use('/', notes);
+
+app.use('/', require('./controllers/routes.js'));
+app.use('/', require('./controllers/notes.js'));
+app.use('/wiki',  require('./controllers/wiki.js')) ;
 app.use('/reader', require('./controllers/reader'));
 // mongoose.set('useFindAndModify', false);
 
@@ -27,7 +27,7 @@ server.listen(app.get('port') , function(){
     console.log('Running on port ' +app.get('port'));
 })
 
-global.debug = function(data) {
+global._log = function(data) {
     console.log(data);
 }
 
