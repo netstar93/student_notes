@@ -20,14 +20,15 @@ $(document).ready(function(){
         }
     })
 
-    $('#wiki_query').keypress(function (e) { 
+ $('#wiki_query').keypress(function (e) {
         WikipediaAPISearch();
         if (e.keyCode == 13)
             $('#submit-wiki').click();
     });
 
-$('.suggestions li')  . click(function(this){
-    $("#wiki_query").val(this.text);
+$('.suggestions').on( 'click'  , 'li' , function() {
+    $("#wiki_query").val($(this).text());
+    $('#submit-wiki') . trigger('click');
 })
     function WikipediaAPISearch() {
         var txt = $("#wiki_query").val();
@@ -41,12 +42,10 @@ $('.suggestions li')  . click(function(this){
                 //console.log(JSON.parse(data[1]));
                 $('ul.suggestions').html('');
                 $.each(data[1], function (i, item) {
-                    
                         var searchData = item;
                         $('ul.suggestions').append("<li>" +item+"</li>")
                         console.log(searchData);
                        // WikipediaAPIGetContent(searchData);
-                    
                 });
             },
             error: function (errorMessage) {

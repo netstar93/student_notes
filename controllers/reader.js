@@ -15,7 +15,6 @@ var desidime = "https://www.desidime.com/deals.atom";
 
 router.get('/' , function(req,response){
         var feed_url = getFeedUrl(req.query.source);
-    debug(feed_url);
         parser.parseURL(feed_url). then(function(feedlist) {
             // debug(feedlist);
                 response.render('newslist' , {title : 'New Note' , 'newsData' : feedlist , 'source' : req.query.source } );

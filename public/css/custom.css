@@ -2,6 +2,7 @@
     padding: 0px 5px 20px 10px;
     border-top: 1px solid;
     background-color: #ffff;
+    min-height:  500px;
 }
 .main-container div,.main-container ,.main-container.span, .main-container a h2{
     /* color: black !important; */
@@ -104,3 +105,27 @@ main-container .div, .main-container span, .main-container a {
     border-right: 1px solid #1E83AE;
 }
 .wiki .right-wiki{ float: right;}
+
+.wiki p{
+    text-align: justify;
+    font-size: 20px;
+}
+.wiki .title{
+    font-size: 25px;
+    font-weight: 600;
+}
+.suggestions .result{
+    padding: 2px 20px 20px 7px;
+    border: 1px solid #209DD0;
+}
+.wiki .suggestions{
+    list-style: none;
+    padding: 0px;
+    /* background-color: darkseagreen; */
+    color: black;
+    font-size: 21px;
+    /* width: 59%; */
+    /* left: 50%; */
+    position: relative;
+    font-weight: 600;
+}
