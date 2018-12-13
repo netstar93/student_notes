@@ -6,6 +6,7 @@ var engine = require('ejs-locals');
 var flash = require('connect-flash');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var expressValidator = require('express-validator');
 var app = express();
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -19,7 +20,7 @@ app.use(cookieParser());
 app.set('port', process.env.PORT || 8000);
 app.use( bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(expressValidator())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     name : 'app.sid',

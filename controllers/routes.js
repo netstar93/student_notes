@@ -6,7 +6,17 @@ var path = require('path');
 var mime = require('mime');
 var yt = require('youtube-dl');
 const ytdl = require('ytdl-core');
-
+var multer = require('multer');
+var path = require('path');
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+var upload = multer({storage: storage}) .single('image');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -94,29 +104,40 @@ router.get('/login' , function(req,res) {
 router.get('/register' , function(req,res) {
     res.render('register' , {title : "Register"});
 });
-router.post('/register' , function(req,res) {
+
+router.post('/register', upload , function(req,res) {
+    var data = req.body;
+    data.image = req.file.filename;
+    Student.findOne({'email' : req.params.email,'mobile' : req.params.mobile} , function(err,result) {
+    log(result);
+    })
+    return false;
     // Validation
     req.checkBody('name', 'Name is required').notEmpty();
     req.checkBody('email', 'Email Addesss is required').notEmpty();
     req.checkBody('password', 'Password is required').notEmpty();
     var errors = req.validationErrors();
 	if (errors) {
+	    log(errors);
 		res.render('register', {
-			errors: errors
+			error: errors,
+            title: "Register"
 		});
 	}else{
-        Student.findOne({'email' : req.params.email}).then(function(err,data) {
-        if(data) {
-            res.render('register', {  email : data.email  });
+        Student.findOne({'email' : req.params.email} , function(err,result) {
+        if(result) { log('found');
+            req.flash('error' , "Already Exist Email");
+            res.render('register', {  email : result.email , title: "Register"  });
         }else{
-            Student.save(function(result){
+            var student = new Student(data)
+            student.save(function(err,result){
                 if(result)
-                log('saved'+ data. name);
+                log('saved'+ result.name);
+                req.flash('success', 'Registered successfully');
             });
         }
         })
     }
 });
-
 
 module.exports = router;

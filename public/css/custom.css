@@ -19,7 +19,6 @@ body{
 header > div { 
     float: left;
     vertical-align: middle;
-    vertical-align: -webkit-baseline-middle;
 }
 header{
     content: "";

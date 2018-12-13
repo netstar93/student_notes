@@ -4,6 +4,7 @@ var config = common.config();
 mongoose.connect(config.database , {useNewUrlParser: true});
 var schema = new mongoose.Schema({
     name : { type: String,min: 5 , max : 20 },
+    mobile : Number,
 	password : String,
 	email : String,
 	course: String,
