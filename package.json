@@ -4,7 +4,8 @@
   "description": "Watch/read/download educational Notes",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production node app.js"
+    "dev": "nodemon -e ejs,css,js",
+    "start": "NODE_ENV=production node app"
   },
   "license": "ISC",
   "dependencies": {
@@ -28,7 +29,6 @@
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
     "node-wikipedia": "0.0.2",
-    "nodemailer": "^4.7.0",
     "nodemon": "^1.18.7",
     "reload": "^2.3.1",
     "request": "^2.88.0",
@@ -37,7 +37,11 @@
     "sinch-rest-api": "0.0.18",
     "web-push": "^3.3.3",
     "youtube-dl": "^1.12.2",
-    "ytdl-core": "^0.28.0"
+    "ytdl-core": "^0.28.0",
+    "bcryptjs": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
   },
   "devDependencies": {}
 }

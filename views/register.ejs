@@ -1,0 +1,56 @@
+<% layout('layout') %> 
+<div class="page register-student">
+    <div class="title">
+        <p>Register to enter in a new world info world.</p>
+    </div>
+    <div class="content">
+        <form class="form login-form" method="post" action ="/register" enctype="multipart/form-data">
+        <div class="form-group">
+        <label>Mobile  Number</label>
+        <input type="text" name="mobile_number" class="input-text" />
+        </div>
+        <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" class="input-text" />
+        </div>
+        <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="input-text" />
+        </div>
+
+        <div class="form-group">
+        <label>Email ID</label>
+        <input type="text" name="email_id" class="input-text" />
+        </div>
+
+        <div class="form-group">
+        <label>Course</label>
+            <select name="course">
+                <option value="btech">B.tech</option>
+                <option value="bca">BCA</option>
+                <option value="mca">MCA</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+        <label>Year</label>
+            <select name="year">
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+        <label>Profile Image</label>
+            <input type="file" name="image" />
+        </div>
+    
+        <div class="form-group">
+        <button type="submit" >Finish It</button>
+        </div>
+        </form>
+    </div>
+
+</div>

@@ -4,8 +4,6 @@ var request = require('request');
 var fs = require('fs');
 var Parser = require('rss-parser');
 let parser = new Parser(); 
-// var wiki_url = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&titles=khesari';
-// var wiki_url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=india&namespace=0&format=json';
 
 router.get('/' , function(req,res){
     var query = {};

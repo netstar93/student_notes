@@ -7,13 +7,17 @@ var mime = require('mime');
 var yt = require('youtube-dl');
 const ytdl = require('ytdl-core');
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+var Student = require('../models/students');
+
 router.get('/debug' , function(req,res) {
     var options = {'quality': 136};
     var file = 'VggLyTla_s0.mp4';//path.join('VggLyTla_s0.mp4');
     ytdl.getInfo('VggLyTla_s0', (err, info) => {
         if (err) throw err;
         let audioFormats = ytdl.chooseFormat(info.formats, {quality : '136' });
-        // console.log(info.title);
         console.log(audioFormats.url);
     });
 })
@@ -41,9 +45,7 @@ router.get('/video' , function(req,res , next) {
     request.get(search_url , function(err, response, body){
         if(err) return console.dir(err);
         var videos = JSON.parse(body);
-        // videos['items']. forEach(function(video) {
                 res.render('video', {title: "Watch download Video",query : search_query,  videos : videos });
-            // })
         });
 });
 
@@ -85,8 +87,36 @@ router.get('/api/generate_video', function (req, res) {
     }
 });
 
-router.get('/register' , function(req,res) {
-    res.render('register');
+router.get('/login' , function(req,res) {
+    res.render('login' , {title : "Login"});
 });
+
+router.get('/register' , function(req,res) {
+    res.render('register' , {title : "Register"});
+});
+router.post('/register' , function(req,res) {
+    // Validation
+    req.checkBody('name', 'Name is required').notEmpty();
+    req.checkBody('email', 'Email Addesss is required').notEmpty();
+    req.checkBody('password', 'Password is required').notEmpty();
+    var errors = req.validationErrors();
+	if (errors) {
+		res.render('register', {
+			errors: errors
+		});
+	}else{
+        Student.findOne({'email' : req.params.email}).then(function(err,data) {
+        if(data) {
+            res.render('register', {  email : data.email  });
+        }else{
+            Student.save(function(result){
+                if(result)
+                log('saved'+ data. name);
+            });
+        }
+        })
+    }
+});
+
 
 module.exports = router;
