@@ -6,9 +6,9 @@ ul.inline li{
 div.inline{
     display: inline-block !important;
 }
-button.btn{
-    border: 2px solid #34d986;
-    border-radius: 0;
+button{
+    border: 1px solid #34d986;
+    border-radius: 5px;
     font-size: 13px;
     font-weight: bold;
     line-height: 1;
@@ -17,14 +17,21 @@ button.btn{
     color: #383749;
     text-decoration: none;
 }
-.theme-color-bg{background:  #34d986 !important }
+button.sm{
+    padding: 10px 10px !important;
+    text-transform: unset;
+}
+.theme-color-bg , success{background:  #34d986 !important }
 .theme-color{background:  #34d986 !important }
+.warning { background:  darkorange; }
 .messages{
-    background:#34d986;
     opacity: 0.9;
     color: #ffffff;
     text-transform: capitalize;
-    font-size: 20px;
+    font-size: 17px;
+}
+.messages  .success{
+    background:  #34d986 !important;
 }
 a{
     text-decoration: none;
@@ -42,3 +49,20 @@ right{ float: right; }
 .width50 { width: 50%;}
 .width60 { width: 60%;}
 .width70 { width: 70%;}
+
+form button {
+    float: right;
+    position: relative;
+    bottom: 13px;
+}
+.form-group {
+    margin-bottom : 10px; 
+}
+.form-group label {
+    min-width: 30%;
+    display: inline-block;
+}
+.form-group input,.form-group select ,.form-group textarea {
+min-width: 40%;
+min-height: 20px
+}

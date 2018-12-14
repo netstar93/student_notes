@@ -18,18 +18,5 @@
                     <span class="control"><a href="/register"><button class="btn">Sign Up</button></a></span>
                 </div>
             </header>
-            <% if(message.success || message.error) { %>
-                <div class="messages width70 center">
-                      <%  if(message.success) { %>
-                    <div class="success center text-center">
-                        <%= message.success%>
-                    </div>
-                    <%  } %>
-                    <%  if(message.error) { %>
-                        <div class="success center">
-                            <%= message.error%>
-                        </div>
-                     <%  } %>
-                </div>
-                <%  } %>
+            <% include message.ejs %>
         </div>

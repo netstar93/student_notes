@@ -25,15 +25,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     name : 'app.sid',
     secret: 'sharely',
-    resave: true,
+    resave: false,
     saveUninitialized: true
 }));
 app.use(function(req,res,next){
+
+    // SET SESSION MESSAGES
     var message = {success :  [], error : []} 
-    res.locals.message = req.flash();
     message.success = req.flash('success');
     message.error = req.flash('error');
     res.locals.message = message;
+    
+    //PASS STUDENT SESSION IN TEMPLATE
+    res.locals.student = req.session.student;
    next();
 })
 

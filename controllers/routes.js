@@ -101,39 +101,67 @@ router.get('/login' , function(req,res) {
     res.render('login' , {title : "Login"});
 });
 
-router.get('/register' , function(req,res) {
+router.get('/register' ,Student.authStudent, function(req,res) {
     res.render('register' , {title : "Register"});
 });
 
+router.post('/login' , Student.authStudent , function(req, res , next) {;
+    Student.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {    
+        // log(result);
+        if(result ) {
+            req.session.student = result;
+            req.session.save();
+            req.flash('success' , 'You have logged in successfully');
+            res.redirect('dashboard');
+        }
+        else{
+            req.flash('error' , 'Incorrect Mobile no./Password');
+            backURL=req.header('Referer') || '/';
+            res.redirect(backURL);
+        }
+    })
+})
+
+router.get('/*', function(req, res, next) {
+    res.locals.student = req.session.student;
+    if(req.session.student) 					
+    next();
+        // res.redirect('/dashboard');	    
+    else
+        res.redirect('/login');
+    
+});
+
+router.get('/dashboard' , Student.authStudent ,function(req, res , next){
+    res.render('student/stu_home' , {title : "Dashboard"});
+})
 router.post('/register', upload , function(req,res) {
     var data = req.body;
+    if(req.file)
     data.image = req.file.filename;
-    Student.findOne({'email' : req.params.email,'mobile' : req.params.mobile} , function(err,result) {
-    log(result);
-    })
-    return false;
-    // Validation
+  // Validation
     req.checkBody('name', 'Name is required').notEmpty();
     req.checkBody('email', 'Email Addesss is required').notEmpty();
     req.checkBody('password', 'Password is required').notEmpty();
     var errors = req.validationErrors();
 	if (errors) {
-	    log(errors);
+	    // log(errors);
 		res.render('register', {
 			error: errors,
             title: "Register"
 		});
 	}else{
-        Student.findOne({'email' : req.params.email} , function(err,result) {
-        if(result) { log('found');
+
+    Student.find({'mobile' : parseInt(req.body.mobile)}).limit(1).then(function(result)  {
+        if(result .length > 0) { log('found');
             req.flash('error' , "Already Exist Email");
-            res.render('register', {  email : result.email , title: "Register"  });
+            res.redirect('/register');
         }else{
             var student = new Student(data)
             student.save(function(err,result){
                 if(result)
-                log('saved'+ result.name);
                 req.flash('success', 'Registered successfully');
+                res.redirect('/register');
             });
         }
         })

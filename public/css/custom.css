@@ -40,18 +40,24 @@ header{
     text-transform: uppercase;
 }
 .page{
-    color: #19c880;
+
     width: 80%;
     margin: 0 auto;
     padding-top: 10px;
     text-transform: capitalize;
     border: 1px solid #34d986;
-    border-radius: 0;
-    padding: 20px;
+    border-radius: 5px;
+    padding: 0px 20px;
+    margin-top: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%);
+}
+.page .title{
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
 }
 .header-content div:nth-child(2) {
 color: #ffff;

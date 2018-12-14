@@ -1,0 +1,14 @@
+<% if(message.success || message.error) { %>
+    <div class="messages width70 center">
+          <%  if(message.success) { %>
+        <div class="success center text-center">
+            <%= message.success%>
+        </div>
+        <%  } %>
+        <%  if(message.error) { %>
+            <div class="warning center text-center">
+                <%= message.error%>
+            </div>
+         <%  } %>
+    </div>
+    <%  } %>
