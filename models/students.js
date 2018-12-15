@@ -19,9 +19,10 @@ var schema = new mongoose.Schema({
 // noteSchema.plugin(timestampPlugin);
 module.exports = mongoose.model('Students' , schema);
 module.exports.authStudent = function(req, res , next) {
-	//console.log(req.session.student);
-	if(!req.session.student) 
-			res.redirect('/login');
-	else		
+    var stu =req.session.student;
+	if(!req.session.student)
+        next();
+			// res.redirect('/login');
+	else
 		next();
 }

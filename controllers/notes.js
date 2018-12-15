@@ -9,3 +9,8 @@ router.get('/notes/add' , function(req,res){
 })
 
 module.exports = router;
+
+module.exports.saveNotes = function(data , callback) {
+    var note = new Notes(data);
+    note.save(callback);
+}

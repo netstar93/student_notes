@@ -13,6 +13,7 @@ var noteSchema = new mongoose.Schema({
         timestamps : true
     });
 noteSchema.add({subject: 'string' , course: 'string' });
+noteSchema.add({file: 'string' });
 // let timestampPlugin = require('../plugins/timestamp');
 // noteSchema.plugin(timestampPlugin);
 module.exports = mongoose.model('Notes' , noteSchema);

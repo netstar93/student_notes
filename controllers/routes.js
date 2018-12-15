@@ -16,11 +16,24 @@ var storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 });
-var upload = multer({storage: storage}) .single('image');
+
+var storage_notes = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/notes')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+
+var upload = multer({storage: storage});
+var note_upload = multer({storage: storage_notes});
+
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var Student = require('../models/students');
+var Notes = require('../controllers/notes');
 
 router.get('/debug' , function(req,res) {
     var options = {'quality': 136};
@@ -105,9 +118,8 @@ router.get('/register' ,Student.authStudent, function(req,res) {
     res.render('register' , {title : "Register"});
 });
 
-router.post('/login' , Student.authStudent , function(req, res , next) {;
-    Student.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {    
-        // log(result);
+router.post('/login' , Student.authStudent , function(req, res , next) {
+    Student.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {
         if(result ) {
             req.session.student = result;
             req.session.save();
@@ -122,20 +134,22 @@ router.post('/login' , Student.authStudent , function(req, res , next) {;
     })
 })
 
-router.get('/*', function(req, res, next) {
-    res.locals.student = req.session.student;
-    if(req.session.student) 					
-    next();
-        // res.redirect('/dashboard');	    
-    else
-        res.redirect('/login');
-    
-});
+// router.get('/*', function(req, res, next) {
+//     res.locals.student = req.session.student;
+//     if(req.session.student)
+//     next();
+//     //     res.redirect('/dashboard');
+//     else
+//         res.redirect('/login');
+//
+// });
 
 router.get('/dashboard' , Student.authStudent ,function(req, res , next){
-    res.render('student/stu_home' , {title : "Dashboard"});
+    Student.findOne({'mobile' : 9999}).then(function(result) {
+        res.render('student/stu_home', {title: "Dashboard" , student : result });
+    })
 })
-router.post('/register', upload , function(req,res) {
+router.post('/register', upload.single('image') , function(req,res) {
     var data = req.body;
     if(req.file)
     data.image = req.file.filename;
@@ -167,5 +181,18 @@ router.post('/register', upload , function(req,res) {
         })
     }
 });
+
+router.post('/saveNote' ,  note_upload.single('note'), function (req , res , next) {
+    var data = req.body;
+    if(req.file)
+        data.file  = req.file.filename;
+
+        data.type = "file";
+        data.added_by = "nitish";
+        Notes. saveNotes(data , function (err,response) {
+            req.flash('success','Note Added');
+            res.redirect('/dashboard');
+        });
+})
 
 module.exports = router;

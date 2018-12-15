@@ -1,6 +1,32 @@
 <% layout('../layout') %>
-<div class="page center width70">
-    <% if(student) { %>
-        <%=  student.name %>
-    <% } %>
+<div class="page-fluid center home">
+
+    <div class="section profile width20">
+        <div class="image img-centered">
+            <i class="fa fa-4x fa-user"></i>
+        </div>
+        <div class="name"><%= student.name %></div>
+        <div class="name"><%= student.mobile %></div>
+        <div class="name"><%= student.email %></div>
+    </div>
+
+    <div class="section main-content width50">
+        <div class="download">
+            <div class="title">Upload Note</div>
+                <form action="/saveNote" method="post" enctype="multipart/form-data">
+                <select name="subject">
+                    <option value="computer">Computer</option>
+                    <option value="science">Science</option>
+                    <option value="internet">Internet</option>
+                </select>
+                <input type="file" name="note"/>
+                <button class="btn" name="uploadNote" type="submit">Upload Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="section chatbox width20">
+        <div class="title">ChatBox</div>
+    </div>
+
 </div>

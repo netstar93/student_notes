@@ -51,8 +51,8 @@ right{ float: right; }
 .width70 { width: 70%;}
 
 form button {
-    float: right;
-    position: relative;
+    /*float: right;*/
+    /*position: relative;*/
     bottom: 13px;
 }
 .form-group {
@@ -65,4 +65,10 @@ form button {
 .form-group input,.form-group select ,.form-group textarea {
 min-width: 40%;
 min-height: 20px
+}
+
+.clearfix{
+    content: "";
+    display: table;
+    clear: both;
 }

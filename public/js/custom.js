@@ -53,4 +53,9 @@ $('.suggestions').on( 'click'  , 'li' , function() {
             }
         });
     }
+
+    function uploadNotes() {
+        alert('ffdfd');
+    }
 })
+

@@ -6,20 +6,25 @@
         <nav class="top-navigation">
             <ul class="inline">
                 <li><a href="/">Home</a></li>
-                <li><a href="/">My Feeds</a></li>
+                <li><a href="/reader">My Feeds</a></li>
                 <li><a href="/video">Video</a></li>
                 <li><a href="/wiki">Mini Wikipedia</a></li>
                 <li><a href="/about">About</a></li>
             </ul>
         </nav>
         </div>
-        <div class="action width30">
-            <span class="control"><a href="/login"><button class="btn">Log In</button></a></span>
-            <span class="control"><a href="/register"><button class="btn">Sign Up</button></a></span>
-        </div>
+        <% if(!student) { %>
+            <div class="action width30">
+                <span class="control"><a href="/login"><button class="btn">Log In</button></a></span>
+                <span class="control"><a href="/register"><button class="btn">Sign Up</button></a></span>
+            </div>
+        <% } else { %>
+            <div class="action width30">
+                <span class="control"><a href="/dashboard"><button class="btn">My Area</button></a></span>
+            </div>
+        <% } %>
     </header>
     <% include partials/message.ejs %>
-
     <div class="header-content-wrapper">
             <div class="header-content">
             <div class="first">This is first Header</div>

@@ -39,8 +39,15 @@ header{
     padding-top: 100px;
     text-transform: uppercase;
 }
+.page-fluid {
+    width: 100%;
+}
+.home .section{
+    float: left;
+    padding: 5px 20px;
+    border:1px  solid #34d986;
+}
 .page{
-
     width: 80%;
     margin: 0 auto;
     padding-top: 10px;
@@ -59,6 +66,7 @@ header{
     font-size: 17px;
     font-weight: 700;
 }
+
 .header-content div:nth-child(2) {
 color: #ffff;
 font-size:50px;
@@ -161,8 +169,6 @@ ul.sources  li{
     padding:5px;
 }
 .search-result{
-    margin-left: 25px;
-    margin-right: 25px;
     display: flex;
 }
 .content  .video-item{
