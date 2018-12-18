@@ -4,19 +4,29 @@
         <p>Login to enter in a new world info world.</p>
     </div>
     <div class="content">
-        <form class="form login-form" method="post" action ="/login" >
+        <form class="form login-form" id="login-form" method="post" action ="/login" >
         <div class="form-group">
         <label>Mobile  Number</label>
         <input type="number" name="mobile" value = "9999" class="input-text" />
         </div>
-
+        
         <div class="form-group">
+            <label>Who Are You?</label>
+            <select class="form-control" name="role">
+                <option value="-1">--Select Role --</option>
+                <option value="1">Student</option>
+                <option value="2">Faculty</option>
+                <option value="3">Admin</option>
+            </select>
+         </div>
+        
+         <div class="form-group">
         <label>Password</label>
         <input type="password" name="password" value ="111" class="input-text" />
         </div>
 
         <div class="form-group">
-        <button type="submit" class="btn sm" >Login</button>
+        <button type="submit" id="loginSubmit" class="btn sm" >Login</button>
         </div>
         </form>
     </div>

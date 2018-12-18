@@ -8,6 +8,8 @@ var yt = require('youtube-dl');
 const ytdl = require('ytdl-core');
 var multer = require('multer');
 var path = require('path');
+var http = require('http').Server(express);
+var io = require('socket.io')(http);
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/images')
@@ -34,6 +36,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var Student = require('../models/students');
 var Notes = require('../controllers/notes');
+var facultyController = require('../controllers/faculty');
 
 router.get('/debug' , function(req,res) {
     var options = {'quality': 136};
@@ -63,7 +66,6 @@ router.get('/video' , function(req,res , next) {
     if(req.query.query) {
         search_query  =  req.query.query;
     }
-    console.log(search_query);
     var search_url = "https://www.googleapis.com/youtube/v3/search?q="+search_query+"&type=video&key=AIzaSyCEpzNH0RT14Y8h_CRcSq6ncUNnq8Ktiws&part=snippet&maxResults=20";
     request.get(search_url , function(err, response, body){
         if(err) return console.dir(err);
@@ -118,15 +120,18 @@ router.get('/register' ,Student.authStudent, function(req,res) {
     res.render('register' , {title : "Register"});
 });
 
-router.post('/login' , Student.authStudent , function(req, res , next) {
-    Student.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {
+router.post('/login' , Student.authStudent ,  async function(req, res , next) {
+    // var modelInfo =  await getModelInfo(req);
+// log(modelInfo.role_model);
+// model = modelInfo.role_model;
+// role = modelInfo.role;
+Students.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {
         if(result ) {
-            req.session.student = result;
+            req.session.role = result;
             req.session.save();
             req.flash('success' , 'You have logged in successfully');
             res.redirect('dashboard');
-        }
-        else{
+        }  else {
             req.flash('error' , 'Incorrect Mobile no./Password');
             backURL=req.header('Referer') || '/';
             res.redirect(backURL);
@@ -134,15 +139,38 @@ router.post('/login' , Student.authStudent , function(req, res , next) {
     })
 })
 
-// router.get('/*', function(req, res, next) {
-//     res.locals.student = req.session.student;
-//     if(req.session.student)
-//     next();
-//     //     res.redirect('/dashboard');
-//     else
-//         res.redirect('/login');
-//
-// });
+router.get('/faculty/login' , function(req, res , next){
+    res.render('faculty/login' , {title : "Faculty Login" } ) ;
+})
+
+router.get('/faculty/dashboard' , function(req, res , next){
+    Student.findOne({'mobile' : 9999}).then(function(faculty) {
+        res.render('faculty/home'  , {title : 'MY HOME' , faculty : faculty})
+    })
+})
+
+router.get('/faculty/notes' , function(req, res , next){
+    Notes.findOne({'added_by' : 9999 }).then(function(faculty) {
+        res.render('faculty/notes'  , {title : 'MY SHARED NOTES' , notes : {} })
+    })
+})
+
+router.post('/faculty_login' , function(req, res , next){
+        facultyController.login(req , function(faculty){
+        req.session.faculty = faculty;
+        req.flash('success' , 'LoggedIn Successfully')
+        res.render('faculty/home'  , {title : 'MY HOME' , faculty : faculty})
+    })
+})
+
+function getModelInfo(req){
+    var role_model = 'Students';
+    var role = 'student';
+     if(req.params.role == 1) { role_model =  "Student";  role = 'student'; }
+     if(req.params.role == 2) { role_model =  "Faculties";  role = 'faculty'; }
+     if(req.params.role == 3) { role_model =  "Admins";  role = 'admin'; }
+    return {role_model : role_model , role : role}
+}
 
 router.get('/dashboard' , Student.authStudent ,function(req, res , next){
     Student.findOne({'mobile' : 9999}).then(function(result) {

@@ -1,35 +1,32 @@
-<% include partials/head.ejs %>
+<% include ../partials/head.ejs %>
 <div class="header-banner">    
     <header class="wrapper">
         <div class="logo-title inline width20"><a href="/">Share<span>Ly</span></a></div>
         <div class="nav-bar inline width50">
         <nav class="top-navigation">
             <ul class="inline">
-                <li><a href="/">Home</a></li>
-                <li><a href="/reader">My Feeds</a></li>
+                <li><a href="/faculty/notes">My Notes</a></li>
                 <li><a href="/video">Video</a></li>
                 <li><a href="/wiki">Mini Wikipedia</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/about">My Students</a></li>
             </ul>
         </nav>
         </div>
-        <% if(!student) { %>
+        <% if(!faculty) { %>
             <div class="action width30">
-                <span class="control"><a href="/login"><button class="btn">Log In</button></a></span>
+                <span class="control"><a href="/faculty/login"><button class="btn">Log In</button></a></span>
                 <span class="control"><a href="/register"><button class="btn">Sign Up</button></a></span>
             </div>
         <% } else { %>
             <div class="action width30">
-                <span class="control"><a href="/dashboard"><button class="btn">My Area</button></a></span>
-                <span class="control"><a href="/logout?id=1"><button class="btn">Logout</button></a></span>
+                <span class="control"><a href="/faculty/dashboard"><button class="btn">My Area</button></a></span>
+                <span class="control"><a href="/logout?id=2"><button class="btn">Logout</button></a></span>
+                <span class="username"><%= faculty.name %></span>
             </div>
         <% } %>
     </header>
-    <% include partials/message.ejs %>
+    <% include ../partials/message.ejs %>
     <div class="header-content-wrapper">
-            <div class="header-content">
-            <div class="first">This is first Header</div>
-            <div class="first">This is Second Header</div>
-          </div>
+            fkfjdf
     </div>
 </div>

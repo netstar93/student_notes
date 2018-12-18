@@ -54,8 +54,9 @@ $('.suggestions').on( 'click'  , 'li' , function() {
         });
     }
 
-    function uploadNotes() {
-        alert('ffdfd');
-    }
+    $('#loginSubmit').click(function(){
+        var form = $('#login-form') ;
+        
+    })
 })
 

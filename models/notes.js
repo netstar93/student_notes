@@ -7,7 +7,9 @@ mongoose.connect(config.database , {useNewUrlParser: true});
 var noteSchema = new mongoose.Schema({
     type : String,
     added_by : { type: String,min: 5 , max : 20 } ,
-    description : String
+    description : String,
+    student : { type: mongoose.Schema.Types.ObjectId , ref : 'Students'},
+    faculty : { type: mongoose.Schema.Types.ObjectId , ref : 'Faculties'}
 },
     {
         timestamps : true

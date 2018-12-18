@@ -27,6 +27,14 @@
 
     <div class="section chatbox width20">
         <div class="title">ChatBox</div>
+        <div class="chatarea">
+            <form id="form" action="" onsubmit="event.preventDefault(); return submitfunction();">
+                <input id="txtChatMessage" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." />
+                <input type="submit" id="btnChatMessage" value="Send" />
+                <input type="image" id="imgAttachment" src="/assets/img/if_31_486131.png" width="30px" />
+                <input type="file" id="fileAttachment" />
+              </form>
+        </div>
     </div>
 
 </div>

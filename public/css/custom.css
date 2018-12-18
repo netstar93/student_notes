@@ -98,6 +98,15 @@ button:hover {
 .action button{
     padding: 10px 10px;
 }
+header .username{
+    color: #ffff;
+    font-size: 15px;
+    width: 10px;
+    height: 10px;
+    background: cadetblue;
+    padding: 10px;
+    border: 1px solid;
+}
 .page  .page-title{
     font-size:  28px; 
 }
