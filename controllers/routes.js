@@ -125,9 +125,10 @@ router.post('/login' , Student.authStudent ,  async function(req, res , next) {
 // log(modelInfo.role_model);
 // model = modelInfo.role_model;
 // role = modelInfo.role;
-Students.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {
+Student.findOne({'mobile' : req.body.mobile  , 'password' : req.body.password }).then(function(result)  {
         if(result ) {
-            req.session.role = result;
+            req.session.username = result.name;
+            req.session.mobile = result.mobile;
             req.session.save();
             req.flash('success' , 'You have logged in successfully');
             res.redirect('dashboard');
@@ -173,7 +174,7 @@ function getModelInfo(req){
 }
 
 router.get('/dashboard' , Student.authStudent ,function(req, res , next){
-    Student.findOne({'mobile' : 9999}).then(function(result) {
+    Student.findOne({'mobile' : req.session.mobile }).then(function(result) {
         res.render('student/stu_home', {title: "Dashboard" , student : result });
     })
 })
