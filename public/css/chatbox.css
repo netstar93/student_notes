@@ -1,0 +1,56 @@
+body{
+    background: url('../images/blur.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.main-wrapper > section { 
+    /* display: inline-block;   */
+    background-color: seagreen;
+    float: left;
+    padding: 10px;
+    margin-right: 20px;
+    border-radius: 10px;
+    height: 100%;
+}
+.main-wrapper {    
+    width: 75%;
+    height: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);    
+    border-radius: 10px;
+}
+.online-list , .chatbox{
+    color: #ffffff;
+    font-size: 18x;
+}
+.profile-image img{
+    width: 35px;
+    border-radius: 15px;
+}
+.current-info  span{ display: block ;}
+.item > div , .chatbox .header > div { display: inline-block ;float: left;}
+.header-search {
+    margin-bottom: 20px;
+}
+.header-search input{
+    border: 0px;
+    border-radius: 20px;
+    padding: 6px;
+    margin:10px;
+}
+.header { width: 100%; }
+.message-box .sender { text-align: right; }
+.message .content .text{
+    padding: 15px;
+    border-radius: 50px;
+}
+.message-box .message {
+    margin: 20px auto;
+}
+.sender .text{ background-color: gray}
+.receiver .text{ background-color: lightskyblue;}
+
