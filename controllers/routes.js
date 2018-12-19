@@ -214,7 +214,6 @@ router.post('/saveNote' ,  note_upload.single('note'), function (req , res , nex
     var data = req.body;
     if(req.file)
         data.file  = req.file.filename;
-
         data.type = "file";
         data.added_by = "nitish";
         Notes. saveNotes(data , function (err,response) {
@@ -223,4 +222,7 @@ router.post('/saveNote' ,  note_upload.single('note'), function (req , res , nex
         });
 })
 
+router.get('/chat' , function(req,res, next){
+    res.render('student/chat' , {title : "Chat Room"})
+})
 module.exports = router;
